@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<wsdl:definitions
+	xmlns:xs="http://www.bcit.ca/comp3656/a00742038/assignment1/xml/"
+	xmlns:tns="http://www.bcit.ca/comp3656/a00742038/assignment1/types/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	name="EmployeeService"
+	targetNamespace="http://www.bcit.ca/comp3656/a00742038/assignment1/xml/">
+
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import
+				namespace="http://www.bcit.ca/comp3656/a00742038/assignment1/types/"
+				schemaLocation="employee.xsd"></xsd:import>
+		</xsd:schema>
+	</wsdl:types>
+
+	<!-- List Employees -->
+	<wsdl:message name="listEmployeeRequest"/>
+	
+	<wsdl:message name="listResult">
+		<wsdl:part name="listRes" element="tns:listEmployeeResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="listError">
+		<wsdl:part name="listEmpFault" element="tns:listEmployeeFault"/>
+	</wsdl:message>
+	
+	<!-- Add Employee -->
+	<wsdl:message name="addRequest">
+		<wsdl:part name="addReq" element="tns:addEmployeeRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="addResult">
+		<wsdl:part name="addRes" element="tns:addEmployeeResponse" />
+	</wsdl:message>
+
+	<wsdl:message name="addError">
+		<wsdl:part name="addEmpFault" element="tns:addEmployeeFault" />
+	</wsdl:message>
+	
+	<!-- Delete Employee -->
+	<wsdl:message name="deleteRequest">
+		<wsdl:part name="deleteReq" element="tns:deleteEmployeeRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="deleteResult">
+		<wsdl:part name="deleteRes" element="tns:deleteEmployeeResponse" />
+	</wsdl:message>
+
+	<wsdl:message name="deleteError">
+		<wsdl:part name="deleteEmpFault" element="tns:deleteEmployeeFault" />
+	</wsdl:message>
+	
+	<!-- Find Employees -->
+	<wsdl:message name="findRequest">
+		<wsdl:part name="findEmpReq" element="tns:findEmployeeRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="findResult">
+		<wsdl:part name="findEmpRes" element="tns:findEmployeeResponse" />
+	</wsdl:message>
+
+	<wsdl:message name="findError">
+		<wsdl:part name="findEmpFault" element="tns:findEmployeeFault" />
+	</wsdl:message>
+
+	<wsdl:portType name="EmployeeServicesPortAPI">
+		<!-- list operation -->
+		<wsdl:operation name="listEmployees">
+			<wsdl:input message="xs:listEmployeeRequest"/>
+			<wsdl:output message="xs:listResult"/>
+			<wsdl:fault name="listError" message="xs:listError"/>
+		</wsdl:operation>
+	
+		<!-- add operation -->
+		<wsdl:operation name="add">
+			<wsdl:input message="xs:addRequest" />
+			<wsdl:output message="xs:addResult" />
+			<wsdl:fault name="addError" message="xs:addError" />
+		</wsdl:operation>
+		
+		<!-- delete operation -->
+		<wsdl:operation name="delete">
+			<wsdl:input message="xs:deleteRequest" />
+			<wsdl:output message="xs:deleteResult" />
+			<wsdl:fault name="deleteError" message="xs:deleteError" />
+		</wsdl:operation>
+		
+		<!-- find operation -->
+		<wsdl:operation name="findEmployee">
+			<wsdl:input message="xs:findRequest" />
+			<wsdl:output message="xs:findResult" />
+			<wsdl:fault name="findError" message="xs:findError" />
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+
+	<wsdl:binding name="EmployeeServicesPortBindingAPI" type="xs:EmployeeServicesPortAPI">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />	
+		
+		<!-- Binding for list operation -->
+		<wsdl:operation name="listEmployees">
+			<soap:operation soapAction=""/>
+			
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			
+			<wsdl:fault name="listError">
+				<soap:fault name="listError" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<!-- Binding for add operation -->
+		<wsdl:operation name="add">
+			<soap:operation soapAction="" />
+
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+
+			<wsdl:fault name="addError">
+				<soap:fault name="addError" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<!-- Binding for delete operation -->
+		<wsdl:operation name="delete">
+			<soap:operation soapAction="" />
+
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+
+			<wsdl:fault name="deleteError">
+				<soap:fault name="deleteError" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<!-- Binding for find operation -->
+		<wsdl:operation name="findEmployee">
+			<soap:operation soapAction="" />
+			
+			<wsdl:input >
+				<soap:body use="literal"/>
+			</wsdl:input>
+			
+			<wsdl:output >
+				<soap:body use="literal"/>
+			</wsdl:output>
+			
+			<wsdl:fault name="findError">
+				<soap:fault name="findError" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="EmployeeAccessService">
+		<wsdl:port name="EmployeeServicesPortAPI" binding="xs:EmployeeServicesPortBindingAPI">
+			<soap:address location="http://localhost:8080/a00742038/EmployeeAccess" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

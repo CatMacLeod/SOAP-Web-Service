@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.component {
+	display:table;
+	clear:right;
+	border-style: double;
+	border-color:red;
+	width: 300px;
+	margin: 25px 10px; 
+	padding: 10px;
+}
+
+.formTitle {
+	background: #D3D3D3; 
+	text-align: center;
+}
+
+table { border: 3px double; 
+	padding: 10px;}
+	
+td { border: 1px dotted black; }
+
+tr { border: 1px dotted black; }
+
+th { border: 1px thick black; 
+	 text-align: left; }
